@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dạ Hương — Nhà hương niche</title>
+<meta name="description" content="Dạ Hương — hương niche, chế tác thủ công, số lượng giới hạn. Trang demo.">
+<!--
+  ẢNH MẪU (khai báo theo DESIGN.md §4 và OPERATIONS.md §16.3):
+  Toàn bộ ảnh dưới đây là ảnh mẫu Unsplash, đồng tông tối–ấm theo DESIGN.md,
+  KHÔNG phải ảnh thật của Dạ Hương. Nguồn:
+  - Hero: https://unsplash.com/photos/1541643600914-78b084683601
+  - Dạ Trầm: https://unsplash.com/photos/1594035910387-fea47794261f
+  - Dạ Hoa: https://unsplash.com/photos/1592945403244-b3fbafd7f539
+  - Dạ Khói: https://unsplash.com/photos/1615634260167-c8cdede054de
+  - Macro: https://unsplash.com/photos/1608528577891-eb055944f2e7
+  Mọi số liệu, giá, cảm nhận trong trang đều là mẫu; địa chỉ/điện thoại thật là [CẦN BỔ SUNG].
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Be+Vietnam+Pro:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#F4EFE8; --dark:#12100D; --ink:#1E1B16; --gold:#A87E3F;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:"Be Vietnam Pro",sans-serif;font-size:16px;line-height:1.7;color:var(--ink);background:var(--ivory);-webkit-font-smoothing:antialiased}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+  .label{font-size:12px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+  .label::before{content:"";display:block;width:48px;height:1px;background:var(--gold);margin-bottom:16px}
+  .btn{display:inline-block;padding:13px 28px;border:1px solid var(--gold);background:transparent;color:var(--gold);font-family:"Be Vietnam Pro",sans-serif;font-size:15px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background .2s,color .2s}
+  .btn:hover{background:var(--gold);color:var(--dark)}
+  .section{padding:96px 0}
+  .fade{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s ease}
+  .fade.visible{opacity:1;transform:none}
+
+  /* Mục 1 — Hero lệch phải, typography chồng lớp (nền tối) */
+  .hero{background:var(--dark);color:var(--ivory);position:relative;overflow:hidden;padding:0 0 96px}
+  .hero-grid{max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1fr 1.1fr;align-items:end;position:relative}
+  .hero-text{padding:110px 0 40px;position:relative;z-index:2}
+  .hero-text h1{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:76px;line-height:1.05;margin:24px 0 20px;color:var(--ivory)}
+  .hero-text p{font-size:17px;color:rgba(244,239,232,.85);max-width:420px;margin-bottom:32px}
+  .hero-img{position:relative;margin-left:-8%}
+  .hero-img img{width:100%;aspect-ratio:4/5;object-fit:cover}
+  .scroll-line{width:1px;height:64px;background:var(--gold);margin:56px 0 0 24px}
+
+  /* Mục 2 — Tuyên ngôn */
+  .manifesto{text-align:center;padding:120px 24px}
+  .manifesto p{font-family:"Cormorant Garamond",serif;font-size:32px;line-height:1.4;max-width:720px;margin:0 auto}
+
+  /* Mục 3 — Bộ sưu tập lệch lưới */
+  .collection h2{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:44px;margin:20px 0 64px}
+  .scent{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-bottom:80px}
+  .scent:nth-child(odd) .scent-img{grid-column:1}
+  .scent:nth-child(even){margin-top:0}
+  .scent-img img{width:100%;object-fit:cover}
+  .scent-img.ratio-34 img{aspect-ratio:3/4}
+  .scent-img.ratio-11 img{aspect-ratio:1/1}
+  .scent-info h3{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:36px;margin:16px 0 12px}
+  .scent-info p{margin-bottom:12px}
+  .scent-info .price{font-weight:500;margin:16px 0 24px}
+  .scent-info .price span{color:var(--gold)}
+  .scent-offset-80{transform:translateY(80px)}
+  .scent-offset-40{transform:translateY(40px)}
+
+  /* Mục 4 — Macro + marquee (nền tối) */
+  .macro{background:var(--dark);padding:0 0 40px}
+  .macro img{width:100%;aspect-ratio:16/9;object-fit:cover}
+  .marquee{overflow:hidden;white-space:nowrap;padding:28px 0 12px}
+  .marquee-track{display:inline-block;white-space:nowrap;animation:marquee 30s linear infinite;font-family:"Cormorant Garamond",serif;font-size:28px;letter-spacing:.12em;color:var(--gold)}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* Mục 5 — Số lớn */
+  .numbers{display:grid;grid-template-columns:1fr 1px 1fr 1px 1fr;gap:32px;align-items:start;text-align:center}
+  .numbers .hairline{background:var(--gold);height:100%}
+  .numbers .num{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:72px;line-height:1;color:var(--gold)}
+  .numbers .cap{font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin-top:12px}
+
+  /* Mục 6 — Trích dẫn */
+  .quote{text-align:center;padding:96px 24px}
+  .quote blockquote{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:28px;line-height:1.5;max-width:720px;margin:0 auto 20px}
+  .quote cite{font-style:normal;font-size:15px}
+  .quote cite span{color:var(--gold)}
+
+  /* Mục 7 — Form đặt mua (nền tối) */
+  .order{background:var(--dark);color:var(--ivory)}
+  .order h2{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:44px;margin:20px 0 48px;color:var(--ivory)}
+  .order form{max-width:560px}
+  .field{margin-bottom:20px}
+  .field label{display:block;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,239,232,.85);margin-bottom:8px}
+  .field input,.field select{width:100%;padding:13px 14px;background:transparent;border:1px solid rgba(168,126,63,.6);color:var(--ivory);font-family:"Be Vietnam Pro",sans-serif;font-size:16px}
+  .field input:focus,.field select:focus{outline:none;border-color:var(--gold)}
+  .field select option{color:var(--ink)}
+  .demo-note{margin-top:20px;font-size:14px;color:rgba(244,239,232,.75)}
+  .contact-line{margin-top:48px;font-size:15px;color:rgba(244,239,232,.85)}
+  .contact-line span{color:var(--gold)}
+
+  footer{background:var(--dark);color:rgba(244,239,232,.7);padding:32px 24px 48px;border-top:1px solid var(--gold)}
+  footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;font-size:14px}
+
+  @media (max-width:768px){
+    .section{padding:56px 0}
+    .hero-grid{grid-template-columns:1fr}
+    .hero-text{padding:64px 0 24px}
+    .hero-text h1{font-size:40px}
+    .hero-img{margin-left:0}
+    .hero-img img{aspect-ratio:4/5}
+    .manifesto{padding:80px 24px}
+    .manifesto p{font-size:26px}
+    .collection h2,.order h2{font-size:36px}
+    .scent{grid-template-columns:1fr;gap:24px;margin-bottom:56px}
+    .scent-offset-80{transform:translateY(40px)}
+    .scent-offset-40{transform:translateY(40px)}
+    .numbers{grid-template-columns:1fr;gap:40px}
+    .numbers .hairline{display:none}
+    .numbers .num{font-size:60px}
+    .macro img{aspect-ratio:16/9}
+    .quote{padding:64px 24px}
+    .quote blockquote{font-size:24px}
+    .scroll-line{margin-top:40px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .marquee-track{animation:none}
+    .fade{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<!-- Mục 1 — Hero -->
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-text">
+      <p class="label">Nhà hương niche</p>
+      <h1>Dạ Hương</h1>
+      <p>Hương niche, chế tác thủ công, số lượng giới hạn. (Nội dung mẫu)</p>
+      <a class="btn" href="#bo-suu-tap">Khám phá bộ sưu tập</a>
+    </div>
+    <div class="hero-img" id="heroImg">
+      <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=1000&q=80" alt="Chai hương Dạ Hương trên nền tối (ảnh mẫu)">
+    </div>
+  </div>
+  <div class="scroll-line" aria-hidden="true"></div>
+</section>
+
+<!-- Mục 2 — Tuyên ngôn -->
+<section class="manifesto fade">
+  <p>“Mùi hương không ồn ào. Nó ở lại sau khi người ta đã đi.”</p>
+</section>
+
+<!-- Mục 3 — Bộ sưu tập -->
+<section class="section" id="bo-suu-tap">
+  <div class="wrap collection">
+    <p class="label">Bộ sưu tập đầu tiên</p>
+    <h2>Ba mùi, ba tông riêng</h2>
+
+    <article class="scent fade">
+      <div class="scent-img ratio-34">
+        <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=900&q=80" alt="Dạ Trầm — tông trầm gỗ (ảnh mẫu)">
+      </div>
+      <div class="scent-info">
+        <p class="label">Mùi 01</p>
+        <h3>Dạ Trầm</h3>
+        <p>Trầm gỗ ấm, sâu và lặng — mùi của buổi tối muộn. (Mô tả mẫu)</p>
+        <p class="price">1.850.000đ <span>— giá mẫu</span></p>
+        <a class="btn" href="#dat-mua">Xem mùi</a>
+      </div>
+    </article>
+
+    <article class="scent fade scent-offset-80">
+      <div class="scent-info">
+        <p class="label">Mùi 02</p>
+        <h3>Dạ Hoa</h3>
+        <p>Hoa trắng thoảng vàng nhạt, nhẹ như buổi sớm. (Mô tả mẫu)</p>
+        <p class="price">1.650.000đ <span>— giá mẫu</span></p>
+        <a class="btn" href="#dat-mua">Xem mùi</a>
+      </div>
+      <div class="scent-img ratio-11">
+        <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=900&q=80" alt="Dạ Hoa — tông hoa trắng vàng nhạt (ảnh mẫu)">
+      </div>
+    </article>
+
+    <article class="scent fade scent-offset-40">
+      <div class="scent-img ratio-34">
+        <img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&w=900&q=80" alt="Dạ Khói — tông khói tối (ảnh mẫu)">
+      </div>
+      <div class="scent-info">
+        <p class="label">Mùi 03</p>
+        <h3>Dạ Khói</h3>
+        <p>Khói hương bảng lảng, trầm mặc và khó nắm bắt. (Mô tả mẫu)</p>
+        <p class="price">2.100.000đ <span>— giá mẫu</span></p>
+        <a class="btn" href="#dat-mua">Xem mùi</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- Mục 4 — Macro + marquee -->
+<section class="macro fade">
+  <img src="https://images.unsplash.com/photo-1608528577891-eb055944f2e7?auto=format&fit=crop&w=1600&q=80" alt="Macro khói hương đồng tông điện ảnh (ảnh mẫu)">
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">CHẾ TÁC THỦ CÔNG — SỐ LƯỢNG GIỚI HẠN — CHẾ TÁC THỦ CÔNG — SỐ LƯỢNG GIỚI HẠN —&nbsp;</div>
+  </div>
+</section>
+
+<!-- Mục 5 — Số lớn chế tác -->
+<section class="section">
+  <div class="wrap numbers fade">
+    <div><div class="num">21</div><div class="cap">Ngày ủ hương (số liệu mẫu)</div></div>
+    <div class="hairline"></div>
+    <div><div class="num">3</div><div class="cap">Mùi trong bộ sưu tập đầu tiên (số liệu mẫu)</div></div>
+    <div class="hairline"></div>
+    <div><div class="num">100</div><div class="cap">Chai mỗi mẻ, đánh số tay (số liệu mẫu)</div></div>
+  </div>
+</section>
+
+<!-- Mục 6 — Trích dẫn -->
+<section class="quote fade">
+  <blockquote>“Tôi không nhớ mình đã xịt mùi gì hôm đó. Tôi chỉ nhớ cả căn phòng thơm rất lâu.”</blockquote>
+  <cite>— Khách hàng giấu tên <span>(cảm nhận mẫu)</span></cite>
+</section>
+
+<!-- Mục 7 — Form đặt mua -->
+<section class="section order" id="dat-mua">
+  <div class="wrap">
+    <p class="label">Đặt mua</p>
+    <h2>Đặt một chai cho riêng bạn</h2>
+    <form id="orderForm">
+      <div class="field">
+        <label for="hoten">Họ tên</label>
+        <input id="hoten" name="hoten" type="text" required placeholder="Họ tên của bạn">
+      </div>
+      <div class="field">
+        <label for="sdt">Số điện thoại</label>
+        <input id="sdt" name="sdt" type="tel" required placeholder="Số điện thoại">
+      </div>
+      <div class="field">
+        <label for="mui">Mùi muốn đặt</label>
+        <select id="mui" name="mui" required>
+          <option value="">Chọn mùi…</option>
+          <option>Dạ Trầm</option>
+          <option>Dạ Hoa</option>
+          <option>Dạ Khói</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="soluong">Số lượng</label>
+        <input id="soluong" name="soluong" type="number" min="1" value="1" required>
+      </div>
+      <button class="btn" type="submit">Gửi yêu cầu đặt mua</button>
+      <p class="demo-note" id="formNote">Bản demo — form chưa gửi dữ liệu thật.</p>
+    </form>
+    <p class="contact-line">Địa chỉ: <span>[CẦN BỔ SUNG]</span> · Điện thoại: <span>[CẦN BỔ SUNG]</span></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Dạ Hương — Nhà hương niche (trang demo)</span>
+    <span>Ảnh: ảnh mẫu Unsplash · Giá, cảm nhận, số liệu: mẫu</span>
+  </div>
+</footer>
+
+<script>
+  // Fade/slide nhẹ khi cuộn tới; tắt khi người dùng bật giảm chuyển động.
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, {threshold: 0.15});
+    document.querySelectorAll('.fade').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.fade').forEach(function(el){ el.classList.add('visible'); });
+  }
+  // Hero parallax rất nhẹ (tối đa 12px), tắt khi giảm chuyển động.
+  var heroImg = document.getElementById('heroImg');
+  if (!reduceMotion && heroImg) {
+    window.addEventListener('scroll', function(){
+      var y = window.scrollY;
+      if (y < 600) heroImg.style.transform = 'translateY(' + (y * 0.02) + 'px)';
+    }, {passive: true});
+  }
+  // Form chỉ giao diện: không gửi dữ liệu thật.
+  document.getElementById('orderForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    document.getElementById('formNote').textContent = 'Đã ghi nhận lựa chọn của bạn trên giao diện demo — form chưa gửi dữ liệu thật.';
+  });
+</script>
+</body>
+</html>
